@@ -15,54 +15,6 @@ class Paciente extends Crud
     private $fotoPac;
 
 
-
-    public function inserir()
-    {
-        $nome = $this->getNomePac();
-        $endereco = $this->getEnderecoPac();
-        $bairro = $this->getBairroPac();
-        $cidade = $this->getcidadePac();
-        $estado = $this->getestadoPac();
-        $cep = $this->getcepPac();
-        $nascimento = $this->getnascimentoPac();
-        $email = $this->getemailPac();
-        $celular = $this->getcelularPac();
-        $foto = $this->getfotoPac();
-
-    function atualizar($campo, $id)
-    {
-        $nome = $this->getNomePac();
-        $endereco = $this->getEnderecoPac();
-        $bairro = $this->getBairroPac();
-        $cidade = $this->getcidadePac();
-        $estado = $this->getestadoPac();
-        $cep = $this->getcepPac();
-        $nascimento = $this->getnascimentoPac();
-        $email = $this->getemailPac();
-        $celular = $this->getcelularPac();
-        $foto = $this->getfotoPac();
-
-
-        $sqlAtualizar = "UPDATE $this->tabela SET 
-        nomePac='$nome'
-        enderecoPac= '$endereco', 
-        bairroPac='$bairro',
-        cidadePac='$cidade',
-        estadoPac='$estado', 
-        cepPac='$cep',
-        nascimentoPac='$nascimento', 
-        emailPac='$email, 
-        celularPac='$celular', 
-        fotoPac='$foto'";
-
-        if (Conexao::query($sqlAtualizar)) {
-            header('location:pacientes.php');
-        }
-
-
-
-    }
-
     /**
      * @return mixed
      */
@@ -265,5 +217,60 @@ class Paciente extends Crud
         $this->fotoPac = $fotoPac;
         return $this;
     }
+    public function inserir()
+    {
+        $nome = $this->getNomePac();
+        $endereco = $this->getEnderecoPac();
+        $bairro = $this->getBairroPac();
+        $cidade = $this->getcidadePac();
+        $estado = $this->getestadoPac();
+        $cep = $this->getcepPac();
+        $nascimento = $this->getnascimentoPac();
+        $email = $this->getemailPac();
+        $celular = $this->getcelularPac();
+        $foto = $this->getfotoPac();
+
+        $sqlInserir = "INSERT INTO $this->tabela paciente (nomePac, enderecoPac, bairroPac, cidadePac,estadoPac, cepPac, nascimentoPac, emailPac, celularPac, fotoPac)
+        VALUES ('$nome,  $endereco ,$bairro, $cidade, $estado, $cep ,$nascimento, $email, $celular,  $foto ')";
+
+        if (Conexao::query($sqlInserir)) {
+            header('location:pacientes.php');
+        }
+
+
+    }
+    function atualizar($campo, $id)
+    {
+        $nome = $this->getNomePac();
+        $endereco = $this->getEnderecoPac();
+        $bairro = $this->getBairroPac();
+        $cidade = $this->getcidadePac();
+        $estado = $this->getestadoPac();
+        $cep = $this->getcepPac();
+        $nascimento = $this->getnascimentoPac();
+        $email = $this->getemailPac();
+        $celular = $this->getcelularPac();
+        $foto = $this->getfotoPac();
+
+
+        $sqlAtualizar = "UPDATE $this->tabela SET 
+        nomePac='$nome'
+        enderecoPac= '$endereco', 
+        bairroPac='$bairro',
+        cidadePac='$cidade',
+        estadoPac='$estado', 
+        cepPac='$cep',
+        nascimentoPac='$nascimento', 
+        emailPac='$email, 
+        celularPac='$celular', 
+        fotoPac='$foto'";
+
+        if (Conexao::query($sqlAtualizar)) {
+            header('location:pacientes.php');
+        }
+
+
+   
+}
 }
 ?>

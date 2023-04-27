@@ -14,20 +14,29 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">CLINICA IFRO</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="#">Features</a>
-                        <a class="nav-link" href="#">Pricing</a>
-                        <a class="nav-link disabled">Disabled</a>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="#" href="pacientes.php">Paciente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Médico</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Consultas</a>
+                        </li>
+                    </ul>
                 </div>
+                
             </div>
         </nav>
     </header>
@@ -58,6 +67,12 @@
             $paciente->setEmailPac(filter_input(INPUT_POST, 'txtEmail'));
             $paciente->setFotoPac($nomeArq);
             $paciente->inserir();
+
+            if (empty($id)) {
+                $paciente->inserir();
+            } else {
+                $paciente->atualizar('idPac', $id);
+            }
         }
             ?>
 

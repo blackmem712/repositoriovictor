@@ -79,7 +79,8 @@
                         <td><?php echo $row->emailPac; ?></td>
                         <td><?php echo $row->celularPac; ?></td>
                     </tr>
-                    <?php } ?>
+                    <?php 
+                } ?>
                 </tbody>
             </table>
             <div class="col-12">
