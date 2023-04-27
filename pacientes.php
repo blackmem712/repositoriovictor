@@ -25,7 +25,10 @@
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Paciente</a>
+                            <a class="nav-link active" aria-current="#" href="pacientes.php">Paciente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="#" href="especialidadeGer.php">especialidade</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Médico</a>

@@ -230,12 +230,13 @@ class Paciente extends Crud
         $celular = $this->getcelularPac();
         $foto = $this->getfotoPac();
 
-        $sqlInserir = "INSERT INTO $this->tabela paciente (nomePac, enderecoPac, bairroPac, cidadePac,estadoPac, cepPac, nascimentoPac, emailPac, celularPac, fotoPac)
-        VALUES ('$nome,  $endereco ,$bairro, $cidade, $estado, $cep ,$nascimento, $email, $celular,  $foto ')";
+        $sqlInserir = "INSERT INTO $this->tabela(nomePac, enderecoPac, bairroPac, cidadePac,estadoPac, cepPac, nascimentoPac, emailPac, celularPac, fotoPac)
+        VALUES ('$nome', '$endereco','$bairro', '$cidade', '$estado', '$cep' ,'$nascimento', '$email','$celular', '$foto ')";
+        
 
         if (Conexao::query($sqlInserir)) {
-            header('location:pacientes.php');
-        }
+           header('location:pacientes.php');
+         }
 
 
     }
