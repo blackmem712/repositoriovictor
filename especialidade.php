@@ -47,10 +47,8 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Açoẽs</th>
-                        <th>Foto</th>
                         <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Celular</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -58,13 +56,13 @@
                     spl_autoload_register(function ($class) {
                         require_once "./Classes/{$class}.class.php";
                     });
-                    $paciente = new Paciente();
-                    $dadosBanco =  $paciente->listar();
+                    $especialidade = new Especialidade();
+                    $dadosBanco =  $especialidade->listar();
                     while($row = $dadosBanco->fetch_object()){
                     ?>
                     <tr>
                         <td>
-                            <a href="pacienteGer.php?id=<?php echo $row->idPac ?>" class="btn btn-secondary">
+                            <a href="especialidadeGer.php?id=<?php echo $row->$idEsp ?>" class="btn btn-secondary">
                                 <span class="material-symbols-outlined">
                                     edit_square
                                 </span>
@@ -75,19 +73,14 @@
                                 </span>
                             </a>
                         </td>
-                        <td>
-                            <img src="imagesPac/<?php echo $row->fotoPac;?>" alt="Foto do paciente <?php echo $row->nomePac; ?>" class="imgred">
-                        </td>
-                        <td><?php echo $row->nomePac; ?></td>
-                        <td><?php echo $row->emailPac; ?></td>
-                        <td><?php echo $row->celularPac; ?></td>
+                        <td> <?php echo $row->NomeEsp ?></td>
                     </tr>
                     <?php 
                 } ?>
                 </tbody>
             </table>
             <div class="col-12">
-                <a href="pacienteGer.php" class="btn btn-primary">Novo Paciente</a>
+                <a href="especialidadeGer.php" class="btn btn-primary">Nova Especialidade</a>
             </div>
         </div>
     </main>

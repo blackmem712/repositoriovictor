@@ -29,7 +29,7 @@
                             <a class="nav-link active" aria-current="#" href="pacientes.php">Paciente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="#" href="especialidadeGer.php">especialidade</a>
+                            <a class="nav-link active" aria-current="#" href="especialidade.php">especialidade</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Médico</a>
