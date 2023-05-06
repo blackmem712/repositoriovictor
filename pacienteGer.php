@@ -49,6 +49,15 @@
             spl_autoload_register(function ($class) {
                 require_once "./Classes/{$class}.class.php";
             });
+            if(filter_has_var(INPUT_GET,'id')){
+                $paciente = new Paciente();
+                $id= filter_input(INPUT_GET,'id'); 
+                echo $id;
+               // $pacEdict = $paciente->buscar('idPac',$id);
+               
+            }
+
+
             if (filter_has_var(INPUT_POST, 'btnGravar')) {
                 if (isset($_FILES['filFoto'])) {
                     $ext = strtolower(substr($_FILES['filFoto']['name'], -4));
@@ -83,7 +92,7 @@
                 <div class="col-12">
                     <label for="txtNome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome..."
-                        name="txtNome">
+                        name="txtNome" value="<?php echo isset($pacEdict->nomePac)?$pacEdict->nomePac:null?>"  >
                 </div>
                 <div class="col-12">
                     <label for="txtEndereco" class="form-label">Endereço</label>
