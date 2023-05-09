@@ -49,6 +49,12 @@
             spl_autoload_register(function ($class) {
                 require_once "./Classes/{$class}.class.php";
             });
+            if(filter_has_var(INPUT_GET,'id')){
+                $especialidade = new Especialidade();
+                $id= filter_input(INPUT_GET,'id'); 
+                echo $id;
+                $pacEdict = $paciente->buscar('idEsp',$id);  
+            }
             if (filter_has_var(INPUT_POST, 'btnGravar')) {
                      
 
@@ -73,7 +79,7 @@
                 <div class="col-12">
                     <label for="txtNomeEsp" class="form-label">Nome da Especialidade:</label>
                     <input type="text" class="form-control" id="txtnomeEsp" placeholder="Digite"
-                        name="txtnomeEsp">
+                        name="txtnomeEsp" value="<?php echo isset($pacEdict->NomeEsp)?$pacEdict->NomeEsp:null?>" >
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary" name="btnGravar">Gravar</button>

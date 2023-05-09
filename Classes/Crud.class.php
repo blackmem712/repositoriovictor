@@ -5,9 +5,9 @@ protected $tabela;
   abstract function inserir();
 public abstract function atualizar($campo,$id);
 
-public function listar()
+public function listar($where = null)
 {
-$selectSql = "SELECT * FROM {$this->tabela}";
+$selectSql = "SELECT * FROM {$this->tabela} $where";
 return Conexao::query($selectSql);
 }
 

@@ -42,8 +42,8 @@
         </nav>
     </header>
     <main class="mt-3">
-        <div class="container mt-3">
-            <div class="d-flex flex-row-reverse">
+        <div class="container">
+        <div class="d-flex flex-row-reverse">
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="col-md-6">
               <div class="input-group mb-3">
                 <div class="form-floating">
@@ -58,16 +58,12 @@
               </div>
             </form>
             </div>
-        </div>
-           
             <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th>Açoẽs</th>
-                        <th>Foto</th>
                         <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Celular</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -75,21 +71,20 @@
                     spl_autoload_register(function ($class) {
                         require_once "./Classes/{$class}.class.php";
                     });
-                    $paciente = new Paciente();
-
+                    $medico = new Medico();
                     if(filter_has_var(INPUT_POST,"txtPesquisar")){
                         $parametro = filter_input(INPUT_POST,'txtPesquisar');
-                        $where = "where (nomePac like '%$parametro%') or (emailPac like '%$parametro%')";
-                        $dadosBanco = $paciente->listar($where);
+                        $where = "where (NomeEsp like '%$parametro%') ";
+                        $dadosBanco = $medico->listar($where);
                     }else{
-                        $dadosBanco = $paciente->listar();
+                        $dadosBanco = $medico->listar();
                     }
-
+                    
                     while($row = $dadosBanco->fetch_object()){
                     ?>
                     <tr>
                         <td>
-                            <a href="pacienteGer.php?id=<?php echo $row->idPac ?>" class="btn btn-info">
+                            <a href="medicoGer.php?id=<?php echo $row->idMed ?>" class="btn btn-secondary">
                                 <span class="material-symbols-outlined">
                                     edit_square
                                 </span>
@@ -100,19 +95,14 @@
                                 </span>
                             </a>
                         </td>
-                        <td>
-                            <img src="imagesPac/<?php echo $row->fotoPac;?>" alt="Foto do paciente <?php echo $row->nomePac; ?>" class="imgred">
-                        </td>
-                        <td><?php echo $row->nomePac; ?></td>
-                        <td><?php echo $row->emailPac; ?></td>
-                        <td><?php echo $row->celularPac; ?></td>
+                        <td> <?php echo $row->nomeMed ?></td>
                     </tr>
                     <?php 
                 } ?>
                 </tbody>
             </table>
             <div class="col-12">
-                <a href="pacienteGer.php" class="btn btn-primary">Novo Paciente</a>
+                <a href="medicoGer.php" class="btn btn-primary">Novo Médico</a>
             </div>
         </div>
     </main>

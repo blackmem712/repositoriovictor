@@ -31,7 +31,7 @@
                             <a class="nav-link active" aria-current="#" href="especialidade.php">especialidade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Médico</a>
+                            <a class="nav-link" href="medico.php">Médico</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link">Consultas</a>
@@ -43,6 +43,21 @@
     </header>
     <main class="mt-3">
         <div class="container">
+        <div class="d-flex flex-row-reverse">
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="col-md-6">
+              <div class="input-group mb-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="txtPesquisar" placeholder="Pesquisar" name="txtPesquisar">
+                    <label for="pesquisar">Pesquisar</label>
+                </div>
+                <button class="btn btn-outline-secondary" type="submit" id="btnPesquisar" name="btnPesquisar">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                </button>
+              </div>
+            </form>
+            </div>
             <table class="table">
                 <thead class="table-dark">
                     <tr>
@@ -57,12 +72,19 @@
                         require_once "./Classes/{$class}.class.php";
                     });
                     $especialidade = new Especialidade();
-                    $dadosBanco =  $especialidade->listar();
+                    if(filter_has_var(INPUT_POST,"txtPesquisar")){
+                        $parametro = filter_input(INPUT_POST,'txtPesquisar');
+                        $where = "where (NomeEsp like '%$parametro%') ";
+                        $dadosBanco = $especialidade->listar($where);
+                    }else{
+                        $dadosBanco = $especialidade->listar();
+                    }
+                    
                     while($row = $dadosBanco->fetch_object()){
                     ?>
                     <tr>
                         <td>
-                            <a href="especialidadeGer.php?id=<?php echo $row->$idEsp ?>" class="btn btn-secondary">
+                            <a href="especialidadeGer.php?id=<?php echo $row->idEsp ?>" class="btn btn-secondary">
                                 <span class="material-symbols-outlined">
                                     edit_square
                                 </span>

@@ -53,8 +53,7 @@
                 $paciente = new Paciente();
                 $id= filter_input(INPUT_GET,'id'); 
                 echo $id;
-               // $pacEdict = $paciente->buscar('idPac',$id);
-               
+                $pacEdict = $paciente->buscar('idPac',$id);  
             }
 
 
@@ -77,6 +76,8 @@
             $paciente->setCepPac(filter_input(INPUT_POST, 'txtCep'));
             $paciente->setNascimentoPac(filter_input(INPUT_POST, 'txtNascimento'));
             $paciente->setEmailPac(filter_input(INPUT_POST, 'txtEmail'));
+            $paciente->setCelularPac(filter_input(INPUT_POST, 'txtCelular'));
+
             $paciente->setFotoPac($nomeArq);           
 
             if (empty($id)) {
@@ -97,17 +98,17 @@
                 <div class="col-12">
                     <label for="txtEndereco" class="form-label">Endereço</label>
                     <input type="text" class="form-control" id="txtEndereco" placeholder="Digite seu endereço..."
-                        name="txtEndereco">
+                        name="txtEndereco" value="<?php echo isset($pacEdict->enderecoPac)?$pacEdict->enderecoPac:null?>"
                 </div>
                 <div class="col-12">
                     <label for="txtBairro" class="form-label">Bairro</label>
                     <input type="text" class="form-control" id="txtBairro" placeholder="Digite seu bairro..."
-                        name="txtBairro">
+                        name="txtBairro" value="<?php echo isset($pacEdict->bairroPac)?$pacEdict->bairroPac:null?>">
                 </div>
                 <div class="col-md-6">
                     <label for="txtCidade" class="form-label">Cidade</label>
                     <input type="text" class="form-control" id="txtCidade" placeholder="Digite sua cidade..."
-                        name="txtCidade">
+                        name="txtCidade" value="<?php echo isset($pacEdict->cidadePac)?$pacEdict->cidadePac:null?>">
                 </div>
                 <div class="col-md-4">
                     <label for="sltEstado" class="form-label">Estado</label>
@@ -145,20 +146,24 @@
                 </div>
                 <div class="col-md-2">
                     <label for="txtCep" class="form-label">Cep</label>
-                    <input type="text" class="form-control" id="txtCep" name="txtCep">
+                    <input type="text" class="form-control" id="txtCep" name="txtCep"
+                     value="<?php echo isset($pacEdict->cepPac)?$pacEdict->cepPac:null?>">
                 </div>
                 <div class="col-12">
                     <label for="txtEmail" class="form-label">E-mail</label>
                     <input type="email" class="form-control" id="txtEmail" placeholder="Digite seu email..."
-                        name="txtEmail">
+                        name="txtEmail"  
+                        value="<?php echo isset($pacEdict->emailPac)?$pacEdict->emailPac:null?>">
                 </div>
                 <div class="col-md-6">
                     <label for="txtNascimento" class="form-label">Nascimento</label>
-                    <input type="date" class="form-control" id="txtNascimento" name="txtNascimento">
+                    <input type="date" class="form-control" id="txtNascimento" name="txtNascimento"  
+                    value="<?php echo isset($pacEdict->nascimentoPac)?$pacEdict->nascimentoPac:null?>">
                 </div>
                 <div class="col-md-6">
                     <label for="txtCelular" class="form-label">Celular</label>
-                    <input type="text" class="form-control" id="txtCelular" name="txtCelular">
+                    <input type="text" class="form-control" id="txtCelular" name="txtCelular"
+                    value="<?php echo isset($pacEdict->celularPac)?$pacEdict->celularPac:null?>">
                 </div>
                 <div class="col-12">
                     <label for="filFoto" class="form-label">Adicione sua Foto</label>
