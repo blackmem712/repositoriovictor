@@ -53,7 +53,7 @@
                 $especialidade = new Especialidade();
                 $id= filter_input(INPUT_GET,'id'); 
                 echo $id;
-                $pacEdict = $paciente->buscar('idEsp',$id);  
+                $pacEdict = $especialidade->buscar('idEsp',$id);  
             }
             if (filter_has_var(INPUT_POST, 'btnGravar')) {
                      
@@ -67,7 +67,6 @@
                 $especialidade->inserir();
             } else {
                 $especialidade->atualizar('idEsp', $id);
-        
         
                }
         

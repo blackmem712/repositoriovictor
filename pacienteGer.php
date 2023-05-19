@@ -50,12 +50,21 @@
                 require_once "./Classes/{$class}.class.php";
             });
             if(filter_has_var(INPUT_GET,'id')){
+            
                 $paciente = new Paciente();
                 $id= filter_input(INPUT_GET,'id'); 
-                echo $id;
                 $pacEdict = $paciente->buscar('idPac',$id);  
             }
-
+            if(filter_has_var(INPUT_GET,'idDel')){
+                $paciente = new Paciente();
+                $id= filter_input(INPUT_GET,'idDel'); 
+                if($paciente->deletar('idPac',$id)){
+                    header('location: pacientes.php');
+                }
+                
+                 
+            }
+           
 
             if (filter_has_var(INPUT_POST, 'btnGravar')) {
                 if (isset($_FILES['filFoto'])) {
@@ -64,10 +73,11 @@
                     $local = "imagesPac/";
                     move_uploaded_file($_FILES['filFoto']['tmp_name'], $local . $nomeArq);
                 }
-            
+            $id = filter_input(INPUT_POST,'txtCodigo');          
+
 
             $paciente = new Paciente();
-
+            
             $paciente->setNomePac(filter_input(INPUT_POST, 'txtNome'));
             $paciente->setEnderecoPac(filter_input(INPUT_POST, 'txtEndereco'));
             $paciente->setBairroPac(filter_input(INPUT_POST, 'txtBairro'));
@@ -78,18 +88,22 @@
             $paciente->setEmailPac(filter_input(INPUT_POST, 'txtEmail'));
             $paciente->setCelularPac(filter_input(INPUT_POST, 'txtCelular'));
 
-            $paciente->setFotoPac($nomeArq);           
+            $paciente->setFotoPac($nomeArq); 
+            $id = filter_input(INPUT_POST,'txtCodigo');          
 
             if (empty($id)) {
                 $paciente->inserir();
             } else {
                 $paciente->atualizar('idPac', $id);
             }
+            
+
         }
             ?>
 
             <form class="row g-3" action="<?php echo
                 htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="txtCodigo" value="<?php echo isset ($pacEdict->idPac) ? $pacEdict->idPac : null;?>">
                 <div class="col-12">
                     <label for="txtNome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome..."

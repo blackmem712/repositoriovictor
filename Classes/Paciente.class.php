@@ -255,23 +255,31 @@ class Paciente extends Crud
 
 
         $sqlAtualizar = "UPDATE $this->tabela SET 
-        nomePac='$nome'
+        nomePac='$nome',
         enderecoPac= '$endereco', 
         bairroPac='$bairro',
         cidadePac='$cidade',
         estadoPac='$estado', 
         cepPac='$cep',
         nascimentoPac='$nascimento', 
-        emailPac='$email, 
+        emailPac='$email', 
         celularPac='$celular', 
         fotoPac='$foto'";
-
-        if (Conexao::query($sqlAtualizar)) {
-            header('location:pacientes.php');
-        }
+        echo $sqlAtualizar; 
+         if (Conexao::query($sqlAtualizar)) {
+             header('location:pacientes.php');
+         }
 
 
    
 }
+    public function deletar($campo, $id){
+    $sqlDelete = "DELETE FROM $this->tabela WHERE $campo = {$id}";
+
+    if(Conexao::query($sqlDelete)){
+        header('location: pacientes.php');
+    }
+}
+
 }
 ?>
