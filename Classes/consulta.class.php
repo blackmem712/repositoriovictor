@@ -152,15 +152,23 @@ class Consulta extends Crud
 
     public function listar($where = null){
 
-$selectSql = "SELECT * FROM {$this->tabela} $where";
-return Conexao::query($selectSql);
+   $selectSql = "SELECT * FROM {$this->tabela} $where";
+      return Conexao::query($selectSql);
 
+}
+ public function deletar($campo, $id){
+    $sqlDelete = "DELETE FROM $this->tabela WHERE $campo = {$id}";
+
+    if(Conexao::query($sqlDelete)){
+        header('location: consulta.php');
+    }
 }
 
 
 
 	
 }
+
 ?>
 
 

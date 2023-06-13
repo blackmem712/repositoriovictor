@@ -35,7 +35,7 @@
                             <a class="nav-link" href="#">Médico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Consultas</a>
+                            <a class="nav-link" href='consulta.php'>Consultas</a>
                         </li>
                     </ul>
                 </div>
